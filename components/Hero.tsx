@@ -36,7 +36,7 @@ const Hero = () => {
                         words="yooo hi my name is rahul "
                     />
                     <p className='text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl dark:text-white text-black'>
-                        Hi, I'm Rahul , A full-stack Developer based in India
+                        Hi, I&apos;m Rahul , A full-stack Developer based in India
                     </p>
                     <a href="#about"><MagicButton
                         title="Show My Work"
