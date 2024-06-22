@@ -7,7 +7,7 @@ import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
 const Approach = () => {
   return (
     <section className="w-full py-20">
-      <h1 className="heading dark:text-white">
+      <h1 className="heading text-white">
         My <span className="text-purple">approach</span>
       </h1>
       {/* remove bg-white dark:bg-black */}
@@ -97,10 +97,10 @@ const Card = ({
       }}
     >
       {/* change to h-10 w-10 , add opacity-30  */}
-      <Icon className="absolute h-10 w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -top-3 -right-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -right-3 dark:text-white text-black opacity-30" />
+      <Icon className="absolute h-10 w-10 -top-3 -left-3 text-white" />
+      <Icon className="absolute h-10 w-10 -bottom-3 -left-3 text-white" />
+      <Icon className="absolute h-10 w-10 -top-3 -right-3 text-white" />
+      <Icon className="absolute h-10 w-10 -bottom-3 -right-3 text-white" />
 
       <AnimatePresence>
         {hovered && (
@@ -125,8 +125,8 @@ const Card = ({
         </div>
         <h2
           // change text-3xl, add text-center
-          className="dark:text-white text-center text-3xl opacity-0 group-hover/canvas-card:opacity-100
-         relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white 
+          className="text-white text-center text-3xl opacity-0 group-hover/canvas-card:opacity-100
+         relative z-10  mt-4  font-bold group-hover/canvas-card:text-white 
          group-hover/canvas-card:-translate-y-2 transition duration-200"
         >
           {title}
