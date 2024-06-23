@@ -77,33 +77,26 @@ export const navItems = [
       title: "A bloging Website",
       des: "The website is a blog platform where users can sign up, sign in, create, view, and update blog posts",
       img: "/p1.png",
-      iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/fm.svg"],
+      iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/postgresql.svg", "/hono.svg", "/cf.svg"],
       link: "https://github.com/rahulhingve/medium-blog-clone",
     },
     {
       id: 2,
-      title: "More Adding Soon",
-      des: "Soon",
-      img: "/",
-      iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-      link: "",
+      title: "Payments Website",
+      des: "A Payment App is a ready-made solution that replicates the core features and functionalities of a popular payment app. It offers a pre-built digital wallet experience, allowing users to make payments",
+      img: "/banking.jpg",
+      iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/express.svg", "/prisma.svg" , "/turborepo.svg"],
+      link: "https://github.com/rahulhingve/Payment-App/",
     },
     {
       id: 3,
-      title: "",
-      des: "",
-      img: "/",
-      iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/three.svg", "/c.svg"],
-      link: "",
+      title: "Portfolio Website",
+      des: "An website to showcase my portfolio",
+      img: "/portfolio.png",
+      iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/aceternity.svg"],
+      link: "https://rahulhingve.vercel.app",
     },
-    {
-      id: 4,
-      title: "",
-      des: "",
-      img: "/",
-      iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/three.svg", "/gsap.svg"],
-      link: "",
-    },
+ 
   ];
   
   export const testimonials = [
@@ -176,31 +169,18 @@ export const navItems = [
     {
       id: 1,
       title: "Frontend Engineer Intern",
-      desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+      desc: "Assisted in the development of a web-based platform using HTML , CSS & JavaScript, enhancing interactivity.",
       className: "md:col-span-2",
       thumbnail: "/exp1.svg",
     },
     {
       id: 2,
-      title: "Mobile App Dev - JSM Tech",
-      desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
-      className: "md:col-span-2", // change to md:col-span-2
+      title: "Freelancing",
+      desc: "Learning and developing with modern tech stack like MERN & Next.js.",
+      className: "md:col-span-2",
       thumbnail: "/exp2.svg",
     },
-    {
-      id: 3,
-      title: "Freelance App Dev Project",
-      desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
-      className: "md:col-span-2", // change to md:col-span-2
-      thumbnail: "/exp3.svg",
-    },
-    {
-      id: 4,
-      title: "Lead Frontend Developer",
-      desc: "Developed and maintained user-facing features using modern frontend technologies.",
-      className: "md:col-span-2",
-      thumbnail: "/exp4.svg",
-    },
+   
   ];
   
   export const socialMedia = [
