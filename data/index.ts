@@ -51,7 +51,7 @@ export const navItems = [
   
     {
       id: 5,
-      title: "Currently building a JS Animation library",
+      title: "Currently building a Real-Time Collaboration Tool for Developers With TurboRepo",
       description: "The Inside Scoop",
       className: "md:col-span-3 md:row-span-2",
       imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
@@ -74,6 +74,14 @@ export const navItems = [
   export const projects = [
     {
       id: 1,
+      title: "Working on Real-Time Collaboration Tool for Developers",
+      des: "Working on A robust and feature-rich real-time collaboration tool for developers",
+      img: "/rtctd.png",
+      iconLists: ["/turborepo.svg","/next.svg", "/express.svg","/tail.svg", "/ts.svg", "/postgresql.svg",],
+      link: "https://github.com/rahulhingve/rtctd",
+    },
+    {
+      id: 2,
       title: "A bloging Website",
       des: "The website is a blog platform where users can sign up, sign in, create, view, and update blog posts",
       img: "/p1.png",
@@ -81,7 +89,7 @@ export const navItems = [
       link: "https://github.com/rahulhingve/medium-blog-clone",
     },
     {
-      id: 2,
+      id: 3,
       title: "Payments Website",
       des: "A Payment App is a ready-made solution that replicates the core features and functionalities of a popular payment app. It offers a pre-built digital wallet experience, allowing users to make payments",
       img: "/banking.jpg",
@@ -89,7 +97,7 @@ export const navItems = [
       link: "https://github.com/rahulhingve/Payment-App/",
     },
     {
-      id: 3,
+      id: 4,
       title: "Portfolio Website",
       des: "An website to showcase my portfolio",
       img: "/portfolio.png",
@@ -179,6 +187,13 @@ export const navItems = [
       desc: "Learning and developing with modern tech stack like MERN & Next.js.",
       className: "md:col-span-2",
       thumbnail: "/exp2.svg",
+    },
+    {
+      id: 3,
+      title: "Working on RTCTD",
+      desc: "Building Real-Time Collaboration Tool for Developers",
+      className: "md:col-span-2",
+      thumbnail: "/exp4.svg",
     },
    
   ];
