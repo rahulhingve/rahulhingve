@@ -1,1 +1,1 @@
-[![](https://visitcount.itsvg.in/api?id=rahulhingve&label=Profile%20Views&pretty=true)](https://rahulhingve.vercel.app/)
+[![](https://visitcount.itsvg.in/api?id=rahulhingve&label=Profile%20Views&pretty=false)](https://rahulhingve.vercel.app/)
