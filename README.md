@@ -1,5 +1,5 @@
 [![](https://visitcount.itsvg.in/api?id=rahulhingve&label=Profile%20Views&pretty=false)](https://rahulhingve.vercel.app/)
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=rahulhingve&hide_progress=true)
+ <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=rahulhingve&show_icons=true&locale=en&layout=compact&hide_border=true&theme=holi" alt="rahulhingve" />
 
 ![Rahul's GitHub stats](https://github-readme-stats.vercel.app/api?username=rahulhingve&show_icons=true&theme=tokyonight)
