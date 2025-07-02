@@ -1,5 +1,5 @@
-[![](https://visitcount.itsvg.in/api?id=rahulhingve&label=Profile%20Views&pretty=false)](https://rahulhingve.vercel.app/)
-![visits](https://visit-counter.vercel.app/counter.png?page=https%3A%2F%2Fgithub.com%2Frahulhingve&s=40&c=ffd500&bg=00000000&no=4&ff=alien&tb=Visit+Count+%3A+&ta=)
+[![](https://visitcount.itsvg.in/api?id=rahulhingve&label=Profile%20Views&pretty=false)](https://rahulhingve.pro)
+[![visits](https://visit-counter.vercel.app/counter.png?page=https%3A%2F%2Fgithub.com%2Frahulhingve&s=40&c=ffd500&bg=00000000&no=4&ff=alien&tb=Visit+Count+%3A+&ta=)](https://rahulhingve.pro)
 
 
 https://rahulhingve.pro
