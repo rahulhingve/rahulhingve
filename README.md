@@ -1,36 +1,27 @@
- This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hey, I'm Rahul 👋
 
-## Getting Started
+DevOps Engineer
 
-First, run the development server:
+I build, containerize, and deploy web applications end-to-end from React frontends to production monitoring stacks.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### What I work with
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Infrastructure** — Docker, Kubernetes, AWS (EC2, EKS, ECR, ECS), Nginx, GitHub Actions CI/CD
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Monitoring** — Prometheus, Grafana, New Relic
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Backend** — Node.js, Express, Python, Flask, PostgreSQL, MongoDB
 
-## Learn More
+**Frontend** — React, Next.js, TypeScript
 
-To learn more about Next.js, take a look at the following resources:
+**Networking** — TCP/IP, DNS, DHCP, Firewalls, VPN, SSH, Load Balancing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Currently
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🔧 Building CI/CD pipelines and containerized deployments
+- 📚 Learning Terraform, Ansible, Helm, and advanced Kubernetes
+- 🔍 Looking for DevOps / SRE roles
 
-## Deploy on Vercel
+### Links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[Portfolio](https://rahulhingve.vercel.app) · [LinkedIn](https://www.linkedin.com/in/rahul-hingve-b5a582263/) · [Email](mailto:rahulpawar2001.rp@gmail.com)
