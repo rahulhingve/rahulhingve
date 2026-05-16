@@ -60,9 +60,13 @@ function pictureToUrl(picture) {
 // useTrackMetadata
 // Takes a list of { file, why, mood } and returns enriched
 // tracks with title, artist, album, cover URL, lyrics array.
+// Pass an empty list to defer loading entirely (lazy mode).
 // ─────────────────────────────────────────────────────────
 export function useTrackMetadata(seeds) {
-  // Initialize each track with seed + loading state + filename fallback
+  // Re-key the loader on the actual list of files so we can lazy-load
+  // by passing [] first and the real list later.
+  const filesKey = seeds.map((s) => s.file).join("|");
+
   const [tracks, setTracks] = useState(() =>
     seeds.map((s, i) => ({
       ...s,
@@ -78,9 +82,32 @@ export function useTrackMetadata(seeds) {
   );
 
   useEffect(() => {
+    if (!seeds.length) {
+      setTracks([]);
+      return;
+    }
+
+    // Reset to fresh "loading" state for this new list
+    setTracks(seeds.map((s, i) => ({
+      ...s,
+      id: i,
+      title: filenameTitle(s.file),
+      artist: "loading…",
+      album: "",
+      cover: null,
+      lyrics: [],
+      loading: true,
+      error: null,
+    })));
+
     let cancelled = false;
     const createdUrls = [];
 
+    // Load metadata for one track by fetching the whole m4a once. We then
+    // hand the same blob URL pattern to <audio> so the browser can stream
+    // playback without re-downloading. M4A `moov` atom can live at file
+    // start or end so a Range request isn't safe — full fetch is the
+    // most reliable approach.
     const loadOne = async (seed, idx) => {
       try {
         const res = await fetch(seed.file);
@@ -104,6 +131,11 @@ export function useTrackMetadata(seeds) {
 
         const lyrics = parseLRC(lyricsRaw);
 
+        // Reuse the fetched blob as the playback source — avoids a second
+        // network round-trip when the user actually presses play.
+        const playUrl = URL.createObjectURL(blob);
+        createdUrls.push(playUrl);
+
         const enriched = {
           ...seed,
           id: idx,
@@ -115,41 +147,54 @@ export function useTrackMetadata(seeds) {
           genre: (c.genre && c.genre[0]) || "",
           cover,
           lyrics,
+          // Override the original file path with a blob URL for instant playback
+          file: playUrl,
+          fileOriginal: seed.file,
           loading: false,
           error: null,
         };
 
         setTracks((prev) => {
           const next = [...prev];
-          next[idx] = enriched;
+          if (next[idx]) next[idx] = enriched;
           return next;
         });
       } catch (err) {
         if (cancelled) return;
         setTracks((prev) => {
           const next = [...prev];
-          next[idx] = {
-            ...next[idx],
-            ...seed,
-            id: idx,
-            title: filenameTitle(seed.file),
-            artist: "missing file",
-            loading: false,
-            error: err.message || "failed to load",
-          };
+          if (next[idx]) {
+            next[idx] = {
+              ...next[idx],
+              ...seed,
+              id: idx,
+              title: filenameTitle(seed.file),
+              artist: "missing file",
+              loading: false,
+              error: err.message || "failed to load",
+            };
+          }
           return next;
         });
       }
     };
 
-    seeds.forEach((seed, idx) => loadOne(seed, idx));
+    // Sequential loading: track 0 first so playback can start immediately,
+    // then the rest in order. Keeps network pressure low on slow connections
+    // (one ~10 MB file in flight at a time, not 5 in parallel).
+    (async () => {
+      for (let i = 0; i < seeds.length; i++) {
+        if (cancelled) break;
+        await loadOne(seeds[i], i);
+      }
+    })();
 
     return () => {
       cancelled = true;
       createdUrls.forEach((u) => URL.revokeObjectURL(u));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [filesKey]);
 
   return tracks;
 }

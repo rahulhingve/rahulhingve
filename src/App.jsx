@@ -2,17 +2,41 @@ import { useState } from "react";
 import {
   FiGithub, FiLinkedin, FiMail, FiInstagram, FiTwitter,
   FiExternalLink, FiDownload, FiMapPin, FiCopy, FiCheck, FiX,
-  FiHeadphones, FiArrowDown, FiHeart, FiDisc,
+  FiHeadphones, FiArrowDown, FiHeart, FiDisc, FiPlay,
 } from "react-icons/fi";
-import { profile, currently, topMusic, playlist, loves, builderIntro, experience, projects, skills } from "./data";
-import MusicPlayer from "./MusicPlayer";
+import {
+  profile, currently, topMusic, playlist, loves,
+  builderIntro, experience, projects, skills,
+} from "./data";
+import { PlayerProvider, usePlayer } from "./PlayerContext";
+import MusicPlayerModal from "./MusicPlayerModal";
+import MiniPlayerPill from "./MiniPlayerPill";
 import DynamicIsland from "./DynamicIsland";
+import NavBar from "./NavBar";
 import "./App.css";
 
+// ─────────────────────────────────────────────────────────
+// Top-level wrapper. PlayerProvider wraps everything so
+// modal, mini pill, island, and section cards share state.
+// ─────────────────────────────────────────────────────────
 export default function App() {
+  return (
+    <PlayerProvider>
+      <Page />
+      <DynamicIsland />
+      <MiniPlayerPill />
+      <MusicPlayerModal />
+    </PlayerProvider>
+  );
+}
+
+// ─────────────────────────────────────────────────────────
+// Page contents
+// ─────────────────────────────────────────────────────────
+function Page() {
   const [showEmail, setShowEmail] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [nowPlaying, setNowPlaying] = useState(null);
+  const player = usePlayer();
 
   const copyEmail = () => {
     navigator.clipboard.writeText(profile.email);
@@ -21,9 +45,8 @@ export default function App() {
   };
 
   return (
-    <div className="app">
-      {/* ───────────────── DYNAMIC ISLAND (mobile) ───────────────── */}
-      <DynamicIsland nowPlaying={nowPlaying} />
+    <div className="app" id="top">
+      <NavBar />
 
       {/* ───────────────── HERO ───────────────── */}
       <header className="hero">
@@ -34,9 +57,13 @@ export default function App() {
           <p className="hero-bio">{profile.bio}</p>
 
           <div className="hero-actions">
-            <a href="#music" className="link-btn link-btn-accent">
+            <button
+              type="button"
+              onClick={() => player.requestPlay(0)}
+              className="link-btn link-btn-accent"
+            >
               <FiHeadphones /> press play
-            </a>
+            </button>
             <a href={profile.instagram} target="_blank" rel="noopener noreferrer" className="link-btn">
               <FiInstagram /> instagram
             </a>
@@ -66,7 +93,7 @@ export default function App() {
       </header>
 
       {/* ───────────────── CURRENTLY ───────────────── */}
-      <section className="section section-currently">
+      <section className="section section-currently" id="currently">
         <div className="container">
           <div className="section-head">
             <h2 className="section-title">currently</h2>
@@ -87,28 +114,14 @@ export default function App() {
       </section>
 
       {/* ───────────────── TOP 5 MUSIC ───────────────── */}
-      <section className="section section-music" id="music">
-        <div className="container">
-          <div className="section-head">
-            <h2 className="section-title">
-              <FiHeadphones className="title-icon" /> top 5 on repeat
-            </h2>
-            <p className="section-sub">
-              the songs i can't stop playing this season. tap any cover to play.
-            </p>
-          </div>
-          <MusicPlayer seeds={topMusic} onStateChange={setNowPlaying} />
-        </div>
-      </section>
+      <MusicSection />
 
       {/* ───────────────── PLAYLIST ───────────────── */}
       <section className="section section-playlist">
         <div className="container">
           <div className="playlist-card">
             <div className="playlist-art">
-              <div className="playlist-art-disc">
-                <FiHeadphones />
-              </div>
+              <div className="playlist-art-disc"><FiHeadphones /></div>
             </div>
             <div className="playlist-info">
               <span className="playlist-pretitle">the full playlist</span>
@@ -142,7 +155,7 @@ export default function App() {
       </section>
 
       {/* ───────────────── THINGS I LOVE ───────────────── */}
-      <section className="section section-loves">
+      <section className="section section-loves" id="loves">
         <div className="container">
           <div className="section-head">
             <h2 className="section-title">
@@ -155,9 +168,7 @@ export default function App() {
               <div key={group.category} className="loves-group">
                 <h3 className="loves-category">{group.category}</h3>
                 <ul className="loves-list">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
+                  {group.items.map((item) => (<li key={item}>{item}</li>))}
                 </ul>
               </div>
             ))}
@@ -165,7 +176,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ───────────────── BUILDER (portfolio, secondary) ───────────────── */}
+      {/* ───────────────── BUILDER ───────────────── */}
       <section className="section section-builder" id="work">
         <div className="container">
           <div className="builder-intro">
@@ -188,7 +199,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Experience */}
           <div className="builder-block">
             <h3 className="builder-block-title">experience</h3>
             <div className="experience-list">
@@ -208,16 +218,13 @@ export default function App() {
                     </div>
                   </div>
                   <ul className="experience-points">
-                    {exp.points.map((point, i) => (
-                      <li key={i}>{point}</li>
-                    ))}
+                    {exp.points.map((point, i) => (<li key={i}>{point}</li>))}
                   </ul>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Projects */}
           <div className="builder-block">
             <h3 className="builder-block-title">things i've built</h3>
             <div className="projects-grid">
@@ -226,28 +233,21 @@ export default function App() {
                   <div className="project-header">
                     <h4 className="project-title">{project.title}</h4>
                     <div className="project-links">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" title="Source code">
-                        <FiGithub />
-                      </a>
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" title="Source code"><FiGithub /></a>
                       {project.live && (
-                        <a href={project.live} target="_blank" rel="noopener noreferrer" title="Live demo">
-                          <FiExternalLink />
-                        </a>
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" title="Live demo"><FiExternalLink /></a>
                       )}
                     </div>
                   </div>
                   <p className="project-description">{project.description}</p>
                   <div className="project-tech">
-                    {project.tech.map((t) => (
-                      <span key={t} className="tag">{t}</span>
-                    ))}
+                    {project.tech.map((t) => (<span key={t} className="tag">{t}</span>))}
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Skills */}
           <div className="builder-block">
             <h3 className="builder-block-title">stack & tools</h3>
             <div className="skills-grid">
@@ -255,9 +255,7 @@ export default function App() {
                 <div key={category} className="skill-group">
                   <h4 className="skill-category">{category}</h4>
                   <div className="skill-tags">
-                    {items.map((skill) => (
-                      <span key={skill} className="tag">{skill}</span>
-                    ))}
+                    {items.map((skill) => (<span key={skill} className="tag">{skill}</span>))}
                   </div>
                 </div>
               ))}
@@ -267,7 +265,7 @@ export default function App() {
       </section>
 
       {/* ───────────────── FOOTER / CONTACT ───────────────── */}
-      <footer className="footer">
+      <footer className="footer" id="contact">
         <div className="container">
           <div className="footer-content">
             <div className="footer-left">
@@ -290,5 +288,78 @@ export default function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────
+// MusicSection — sneak peek of top 5, with a launch CTA.
+// All cards open the modal player; metadata is loaded on first launch.
+// ─────────────────────────────────────────────────────────
+function MusicSection() {
+  const player = usePlayer();
+  const filenameTitle = (path) => {
+    const name = path.split("/").pop().replace(/\.[^.]+$/, "");
+    return name.replace(/^\s*\d+[\s.\-_]+/, "").trim() || name;
+  };
+
+  return (
+    <section className="section section-music" id="music">
+      <div className="container">
+        <div className="section-head">
+          <h2 className="section-title">
+            <FiHeadphones className="title-icon" /> top 5 on repeat
+          </h2>
+          <p className="section-sub">
+            the songs i can't stop playing this season. tap any card to launch the player.
+          </p>
+        </div>
+
+        <div className="peek-grid">
+          {topMusic.map((seed, i) => {
+            // Use lightweight title from filename — full metadata loads inside the player
+            const title = filenameTitle(seed.file);
+            return (
+              <button
+                key={seed.file}
+                type="button"
+                className="peek-card"
+                onClick={() => player.requestPlay(i)}
+                aria-label={`Play this song: ${title}`}
+              >
+                <div className="peek-cover">
+                  <span className="peek-cover-num">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="peek-cover-glow" aria-hidden="true" />
+                  <span className="peek-cover-play"><FiPlay /></span>
+                </div>
+                <div className="peek-meta">
+                  <span className="peek-rank">#{i + 1} on repeat</span>
+                  <h3 className="peek-title">{title}</h3>
+                  {seed.mood && <span className="peek-mood">{seed.mood}</span>}
+                  {seed.why && <p className="peek-why">"{seed.why}"</p>}
+                  <span className="peek-cta">
+                    <FiPlay /> play this song
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="music-launcher">
+          <button
+            type="button"
+            className="launcher-btn"
+            onClick={() => player.requestPlay(0)}
+          >
+            <span className="launcher-icon"><FiHeadphones /></span>
+            <span className="launcher-text">
+              <span className="launcher-title">launch rahul's tape</span>
+              <span className="launcher-sub">5 songs · synced lyrics · best with headphones</span>
+            </span>
+            <span className="launcher-arrow"><FiPlay /></span>
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }
