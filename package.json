@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "music-metadata": "^11.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0"

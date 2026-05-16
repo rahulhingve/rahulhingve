@@ -32,67 +32,48 @@ export const currently = [
 
 // ─────────────────────────────────────────────────────────
 // Top 5 songs on repeat
-// Drop your .m4a files in /public/music/ and cover art in /public/covers/
-// Then update src + cover paths below.
+// Just drop your .m4a files in /public/music/ and add entries below.
+// Title, artist, album, cover, and lyrics are read from the file itself.
+// You only write the personal note ("why").
 // ─────────────────────────────────────────────────────────
 export const topMusic = [
   {
-    id: 1,
-    title: "Song Title 1",
-    artist: "Artist Name",
-    cover: "/covers/song1.jpg",       // place at /public/covers/song1.jpg
-    src: "/music/song1.m4a",          // place at /public/music/song1.m4a
+    file: "/music/song1.m4a",
     why: "this one hits at 2am on a long drive. the bridge breaks me every single time.",
     mood: "late night drives",
   },
   {
-    id: 2,
-    title: "Song Title 2",
-    artist: "Artist Name",
-    cover: "/covers/song2.jpg",
-    src: "/music/song2.m4a",
+    file: "/music/song2.m4a",
     why: "found it on a random sunday and it's been stuck in my head ever since. pure serotonin.",
     mood: "sunday mornings",
   },
   {
-    id: 3,
-    title: "Song Title 3",
-    artist: "Artist Name",
-    cover: "/covers/song3.jpg",
-    src: "/music/song3.m4a",
+    file: "/music/song3.m4a",
     why: "the kind of song you put on when you want to feel everything at once. lyrics like a punch.",
     mood: "feeling everything",
   },
   {
-    id: 4,
-    title: "Song Title 4",
-    artist: "Artist Name",
-    cover: "/covers/song4.jpg",
-    src: "/music/song4.m4a",
+    file: "/music/song4.m4a",
     why: "i listen to this when i'm coding at midnight. it's basically my focus drug.",
     mood: "deep work",
   },
   {
-    id: 5,
-    title: "Song Title 5",
-    artist: "Artist Name",
-    cover: "/covers/song5.jpg",
-    src: "/music/song5.m4a",
+    file: "/music/song5.m4a",
     why: "one of those songs that feels like a hug. plays on every walk home.",
     mood: "walks home",
   },
 ];
 
 // ─────────────────────────────────────────────────────────
-// Full playlist link — drop your Spotify / Apple Music URL
+// Full playlist link — Spotify + ALAC lossless
 // ─────────────────────────────────────────────────────────
 export const playlist = {
   name: "the everything playlist",
-  description: "everything i've loved enough to save. updated whenever a song refuses to leave my head.",
-  trackCount: 0, // update with real number
-  spotify: "https://open.spotify.com/playlist/YOUR_PLAYLIST_ID",  // replace
-  appleMusic: "",  // optional
-  youtube: "",     // optional
+  description: "everything i've loved enough to save. updated whenever a song refuses to leave my head. i also keep an alac lossless mirror — if you care about audio quality, that's the good stuff.",
+  spotify: "https://open.spotify.com/playlist/YOUR_PLAYLIST_ID", // replace
+  alac: "https://rahul-files.hhrcloud.site/1:/",                  // ALAC lossless library
+  appleMusic: "",
+  youtube: "",
 };
 
 // ─────────────────────────────────────────────────────────

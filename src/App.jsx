@@ -2,15 +2,17 @@ import { useState } from "react";
 import {
   FiGithub, FiLinkedin, FiMail, FiInstagram, FiTwitter,
   FiExternalLink, FiDownload, FiMapPin, FiCopy, FiCheck, FiX,
-  FiHeadphones, FiArrowDown, FiHeart,
+  FiHeadphones, FiArrowDown, FiHeart, FiDisc,
 } from "react-icons/fi";
 import { profile, currently, topMusic, playlist, loves, builderIntro, experience, projects, skills } from "./data";
 import MusicPlayer from "./MusicPlayer";
+import DynamicIsland from "./DynamicIsland";
 import "./App.css";
 
 export default function App() {
   const [showEmail, setShowEmail] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [nowPlaying, setNowPlaying] = useState(null);
 
   const copyEmail = () => {
     navigator.clipboard.writeText(profile.email);
@@ -20,6 +22,9 @@ export default function App() {
 
   return (
     <div className="app">
+      {/* ───────────────── DYNAMIC ISLAND (mobile) ───────────────── */}
+      <DynamicIsland nowPlaying={nowPlaying} />
+
       {/* ───────────────── HERO ───────────────── */}
       <header className="hero">
         <div className="container">
@@ -92,7 +97,7 @@ export default function App() {
               the songs i can't stop playing this season. tap any cover to play.
             </p>
           </div>
-          <MusicPlayer tracks={topMusic} />
+          <MusicPlayer seeds={topMusic} onStateChange={setNowPlaying} />
         </div>
       </section>
 
@@ -113,6 +118,11 @@ export default function App() {
                 {playlist.spotify && (
                   <a href={playlist.spotify} target="_blank" rel="noopener noreferrer" className="link-btn link-btn-accent">
                     <FiExternalLink /> open in spotify
+                  </a>
+                )}
+                {playlist.alac && (
+                  <a href={playlist.alac} target="_blank" rel="noopener noreferrer" className="link-btn link-btn-alac">
+                    <FiDisc /> alac lossless
                   </a>
                 )}
                 {playlist.appleMusic && (
