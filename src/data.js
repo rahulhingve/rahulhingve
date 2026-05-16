@@ -38,27 +38,28 @@ export const currently = [
 // ─────────────────────────────────────────────────────────
 export const topMusic = [
   {
-    file: "/music/song1.m4a",
-    why: "this one hits at 2am on a long drive. the bridge breaks me every single time.",
-    mood: "late night drives",
+  file: "/music/05. Phoolon Jaisi.m4a",
+  why: "stumbled upon this movie one day and this song completely hooked me, especially the beats. to be fair, the entire soundtrack is a masterpiece.",
+  mood: "whenever, wherever it plays",
   },
   {
-    file: "/music/song2.m4a",
+  file: "/music/07. Sunlo Zara.m4a",
+  why: "it just hits the right spot, especially Shreya's beautiful voice.",
+  mood: "whenever I need a mood lift",
+  },
+  {
+    file: "/music/09. About You.m4a",
     why: "found it on a random sunday and it's been stuck in my head ever since. pure serotonin.",
     mood: "sunday mornings",
   },
+ 
   {
-    file: "/music/song3.m4a",
-    why: "the kind of song you put on when you want to feel everything at once. lyrics like a punch.",
-    mood: "feeling everything",
+  file: "/music/03. Gonna Fall In Love.m4a",
+  why: "the track is packed with pure, energetic vibes.",
+  mood: "brings that high-energy feel",
   },
   {
-    file: "/music/song4.m4a",
-    why: "i listen to this when i'm coding at midnight. it's basically my focus drug.",
-    mood: "deep work",
-  },
-  {
-    file: "/music/song5.m4a",
+    file: "/music/02. Forget Her.m4a",
     why: "one of those songs that feels like a hug. plays on every walk home.",
     mood: "walks home",
   },
