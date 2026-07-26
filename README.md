@@ -24,4 +24,4 @@ I build, containerize, and deploy web applications end-to-end from React fronten
 
 ### Links
 
-[Portfolio](https://rahulhingve.vercel.app) · [LinkedIn](https://www.linkedin.com/in/rahul-hingve-b5a582263/) · [Email](mailto:rahulpawar2001.rp@gmail.com)
+[Portfolio](https://rahulhingve.live) · [LinkedIn](https://www.linkedin.com/in/rahul-hingve-b5a582263/) · [Email](mailto:rahulpawar2001.rp@gmail.com)
